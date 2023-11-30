@@ -44,7 +44,7 @@ class TestValidadorCPF(unittest.TestCase):
     """
     Testa se CPFs válidos passam na validação do método validacao_cpf.
     """
-    def test_validacao_cpf_validCPF(self):
+    def test_validacao_cpf_valido(self):
         self.assertTrue(ValidadorCPF("123.456.789-09").validacao_cpf())
         self.assertTrue(ValidadorCPF("98765432100").validacao_cpf())
         self.assertTrue(ValidadorCPF("235.998.567-10").validacao_cpf())
@@ -52,7 +52,7 @@ class TestValidadorCPF(unittest.TestCase):
     """
     Testa se se CPFs inválidos falham na validação do método validacao_cpf.
     """
-    def test_is_invalidCPF(self):
+    def test_validacao_cpf_invalido(self):
         self.assertFalse(ValidadorCPF("11111111111").validacao_cpf())
         self.assertFalse(ValidadorCPF("123.456.789-00").validacao_cpf())
         self.assertFalse(ValidadorCPF("15698192022").validacao_cpf())
@@ -62,7 +62,7 @@ class TestValidadorCPF(unittest.TestCase):
     Testa se CPFs com formatos inválidos falham na validação do método 
     validacao_cpf.
     """
-    def test_validacao_cpf_invalidFormat(self):
+    def test_validacao_cpf_formato_invalido(self):
         self.assertFalse(ValidadorCPF("123.456.789").validacao_cpf())
         self.assertFalse(ValidadorCPF("abc123def456").validacao_cpf())
         self.assertFalse(ValidadorCPF("123").validacao_cpf())
