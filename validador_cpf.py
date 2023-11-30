@@ -1,4 +1,14 @@
+"""
+Módulo responsável por validar um CPF.
+
+O CPF é composto por 11 dígitos, sendo os dois últimos dígitos verificadores.
+Para validar um CPF, é necessário calcular os dígitos verificadores e compará-los
+com os dígitos verificadores do CPF. Se os dígitos verificadores forem iguais,
+o CPF é válido.
+"""
+
 import re
+
 
 class LimpezaCPF:
     """ Classe responsável por limpar o CPF, removendo caracteres não numéricos. """
@@ -15,6 +25,7 @@ class LimpezaCPF:
             str: O CPF limpo, contendo apenas dígitos.
         """
         return re.sub(r"[^0-9]", "", cpf)
+
 
 class ValidadorCPF:
     """ Classe responsável pela validação do CPF. """
@@ -40,7 +51,8 @@ class ValidadorCPF:
         Returns:
             int: O dígito verificador calculado.
         """
-        digito_calculado = sum(int(digito) * peso for digito, peso in zip(digitos, range(peso_inicial, 1, -1)))
+        digito_calculado = sum(int(digito) * peso for digito, peso
+                               in zip(digitos, range(peso_inicial, 1, -1)))
         return (digito_calculado * 10) % 11
 
     @staticmethod
@@ -70,8 +82,10 @@ class ValidadorCPF:
             return False
 
         cpf_sem_digitos_verificadores = cpf[:9]
-        digito_verificador_1 = ValidadorCPF._obter_digito_verificador(cpf_sem_digitos_verificadores, 10)
-        digito_verificador_2 = ValidadorCPF._obter_digito_verificador(cpf_sem_digitos_verificadores + str(digito_verificador_1), 11)
+        digito_verificador_1 = ValidadorCPF._obter_digito_verificador(
+            cpf_sem_digitos_verificadores, 10)
+        digito_verificador_2 = ValidadorCPF._obter_digito_verificador(
+            cpf_sem_digitos_verificadores + str(digito_verificador_1), 11)
 
         return int(cpf[9]) == digito_verificador_1 and int(cpf[10]) == digito_verificador_2
 

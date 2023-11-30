@@ -1,4 +1,8 @@
-from Exercicio1 import ValidadorCPF
+"""
+Modulo principal para executar a validação de CPF
+"""
+
+from validador_cpf import ValidadorCPF
 
 if __name__ == "__main__":
     cpf_input = input("Formato para inserir CPF - XXX.XXX.XXX-XX: ")
